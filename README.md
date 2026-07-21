@@ -8,3 +8,8 @@ Modo 0: LEDs apagados (estado inicial).
 Modo 1 (décadas): contador circular de 0 a 9, mostrado en binario sobre los 4 LEDs.
 Modo 2 (binario): contador circular de 0 a 15, mostrado en binario sobre los 4 LEDs.
 Cada cambio de modo reinicia el contador en 0.
+
+# Prelaboratorio
+Link para el prelaboratorio 1:
+
+https://uvggt-my.sharepoint.com/:b:/g/personal/bia24080_uvg_edu_gt/IQCR0eAXu8qgT6aQU3VlCd1cAc1_pLN--aywMJv73ez0yBw?e=Dq3TMK 
