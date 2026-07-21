@@ -41,12 +41,13 @@ uint8_t modo = 0;
 void apagar(void);
 
 void setup() {
+Serial.begin(115200);
 pinMode(led1, OUTPUT);
 pinMode(led2, OUTPUT);
 pinMode(led3, OUTPUT);
 pinMode(led4, OUTPUT);
 
-pinMode(botonsuma, INPUT);
+pinMode(botonsuma, INPUT_PULLUP);
 pinMode(botonresta, INPUT);
 pinMode(botonmodo, INPUT);
 }
@@ -63,10 +64,10 @@ uint8_t estado3 = digitalRead(botonmodo);
 //************************************************************/
 //Cambio de modo
 //************************************************************/
-if (estado3==HIGH){
+if (estado3==LOW){
   salida = 1;
 }
-if((estado3==LOW)&&(salida==1)){
+if((estado3==HIGH)&&(salida==1)){
   delay(15);
   modo=modo+1;
   if(modo>2){
@@ -85,10 +86,10 @@ if(modo==0){
 //Contador de Décadas
 //************************************************************/
 if(modo==1){
-  if (estado==HIGH){
+  if (estado==LOW){
     Salidamas = 1;
   }
-  if ((Salidamas==1)&&(estado==LOW)){
+  if ((Salidamas==1)&&(estado==HIGH)){
     delay(15);
     contador = contador + 1;
     if (contador>4){
@@ -102,7 +103,7 @@ if(modo==1){
   if ((Salidamenos==1)&&(estado2==LOW)){
     delay(15);
     contador = contador - 1;
-    if (contador==255){
+    if (contador==0){
       contador = 4;
     }
     Salidamenos=0;
@@ -120,10 +121,10 @@ if(modo==1){
 //Contador Binario
 //************************************************************/
 if(modo == 2){
-  if (estado==HIGH){
+  if (estado==LOW){
     Salidamas = 1;
   }
-  if ((Salidamas==1)&&(estado==LOW)){
+  if ((Salidamas==1)&&(estado==HIGH)){
     delay(15);
     contador = contador + 1;
     if (contador>15){
@@ -161,6 +162,11 @@ if(modo == 2){
     case 15: digitalWrite(led1,HIGH); digitalWrite(led2,HIGH); digitalWrite(led3,HIGH); digitalWrite(led4,HIGH); break;
   }
 }
+Serial.print("suma: "); Serial.print(estado);
+Serial.print(" | resta: "); Serial.print(estado2);
+Serial.print(" | modo: "); Serial.print(estado3);
+Serial.print(" | modo_actual: "); Serial.println(modo);
+
 }
 
 //************************************************************/
